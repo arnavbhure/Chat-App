@@ -1,3 +1,5 @@
+const User = require("../../models/userSchema");
+
 const loginController = async (req, res) => {
   const { email, password } = req.body;
   try {
