@@ -1,3 +1,5 @@
+const cloudinary = require("../../lib/cloudinary");
+
 const updateProfileController = async (req, res) => {
   try {
     const { profilePic } = req.body;
