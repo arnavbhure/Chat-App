@@ -1,4 +1,6 @@
+const { generateJWTtoken } = require("../../lib/utils");
 const User = require("../../models/userSchema");
+const bcrypt = require("bcrypt");
 
 const loginController = async (req, res) => {
   const { email, password } = req.body;
@@ -14,7 +16,7 @@ const loginController = async (req, res) => {
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    generateToken(user._id, res);
+    generateJWTtoken(user._id, res);
 
     res.status(200).json({
       _id: user._id,

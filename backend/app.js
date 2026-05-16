@@ -7,10 +7,10 @@ const ProfileRouter = require("./src/Routers/profileRouter");
 const cookieParser = require("cookie-parser");
 const checkAuthController = require("./src/controllers/checkAuthController");
 const messageRouter = require("./src/Routers/messageRouter");
+const { app, server } = require("./src/lib/socket");
 
 dotenv.config();
 
-const app = express();
 app.use(cookieParser());
 
 const PORT = process.env.PORT;
@@ -26,9 +26,9 @@ app.use(express.json());
 app.use("/api/auth", authRouter);
 app.use("/api", ProfileRouter);
 app.use("/api/auth/check", checkAuthController);
-app.use("/api/message", messageRouter);
+app.use("/api/messages", messageRouter);
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
   connectDB();
 });
